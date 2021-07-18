@@ -27,7 +27,10 @@ const storage = multer.diskStorage({
         cb(null, uuidv4() + path.extname(file.originalname)) //Appending extension
     }
 })
-const upload = multer({storage})
+const upload = multer({
+    storage, 
+    limits: { fileSize: 100*1024*1024 }
+})
 
 app.post("/upload", AuthorizationMiddleware, upload.single("sharex"), (req: Request, res: Response) => {
     res.send(process.env.DOMAIN! + req.file?.filename);
