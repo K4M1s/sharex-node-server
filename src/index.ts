@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { existsSync, mkdir } from 'fs';
 import bodyParser from 'body-parser';
 
+const maxFileSize: number = typeof process.env.SIZE === "number" ? process.env.SIZE : 100;
+
 if (!existsSync(path.resolve(__dirname, '../uploads'))) {
     mkdir(path.resolve(__dirname, '../uploads'), (err) => {
         if (err) {
@@ -30,10 +32,10 @@ const storage = multer.diskStorage({
 })
 const upload = multer({
     storage, 
-    limits: { fileSize: 100*1024*1024 }
+    limits: { fileSize: maxFileSize*1024*1024 }
 })
 
-app.use(bodyParser.urlencoded({extended: true, limit: "100mb"}));
+app.use(bodyParser.urlencoded({extended: true, limit: `${maxFileSize}mb`}));
 
 app.post("/upload", AuthorizationMiddleware, upload.single("sharex"), (req: Request, res: Response) => {
     res.send(process.env.DOMAIN! + req.file?.filename);

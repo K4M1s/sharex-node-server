@@ -3,4 +3,4 @@ Simple NodeJS Server for ShareX that allows to upload screenshots and screen cap
 
 ## Use with docker
 
-> $ docker run --init -p 3000:3000 -e KEY=supermagickey -e DOMAIN='http://localhost:3000/' k4m1s/sharex-node-server
+> $ docker run --init -p 3000:3000 -e KEY=supermagickey -e DOMAIN='http://localhost:3000/' -e SIZE=300 k4m1s/sharex-node-server
