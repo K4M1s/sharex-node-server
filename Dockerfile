@@ -14,6 +14,7 @@ RUN npm run build
 ENV PORT=3000
 ENV KEY=changemeplease
 ENV DOMAIN=https://localhost:3000/
+ENV SIZE=100
 
 EXPOSE 3000
 
