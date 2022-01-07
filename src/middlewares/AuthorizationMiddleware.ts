@@ -10,7 +10,7 @@ export default function AuthorizationMiddleware(req: Request, res: Response, nex
         return res.status(401).send("Invalid API key");
     }
 
-    if (key[1] !== process.env.API_KEY) {
+    if (key[1] !== process.env.KEY) {
         return res.status(401).send("Invalid API key");
     }
 
