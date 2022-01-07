@@ -9,7 +9,11 @@ import { v4 as uuidv4 } from 'uuid';
 import { existsSync, mkdir } from 'fs';
 import bodyParser from 'body-parser';
 
+<<<<<<< HEAD
 const maxFileSize: number = typeof process.env.SIZE === "number" ? process.env.SIZE : 100;
+=======
+const maxFileSize = process.env.SIZE;
+>>>>>>> fbf388e87bbb84c4036b8ee8946ae83a4d1dcd8b
 
 if (!existsSync(path.resolve(__dirname, '../uploads'))) {
     mkdir(path.resolve(__dirname, '../uploads'), (err) => {
