@@ -2,7 +2,7 @@ version: '3'
 
 services:
   sharex-server:
-    container_name: sharex-server
+    container_name: ${PROJECT_NAME}
     build: .
     environment:
       - PORT=${PORT}
@@ -11,10 +11,10 @@ services:
       - DOMAIN=${DOMAIN}
       - SIZE=${SIZE}
     labels:
-      - "traefik.http.routers.sharex_server.rule=Host(`test.localhost`)"
-      - "traefik.http.routers.sharex_server.tls=true"
-      - "traefik.http.routers.sharex_server.tls.certresolver=lets-encrypt"
-      - "traefik.port=6969"
+      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.${PROJECT_NAME}.tls=true"
+      - "traefik.http.routers.${PROJECT_NAME}.tls.certresolver=lets-encrypt"
+      - "traefik.http.services.${PROJECT_NAME}.loadbalancer.server.port=${PORT}"
     networks:
       - web
 

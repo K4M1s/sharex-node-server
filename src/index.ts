@@ -38,7 +38,7 @@ const upload = multer({
 app.use(bodyParser.urlencoded({extended: true, limit: `${maxFileSize}mb`}));
 
 app.post("/upload", AuthorizationMiddleware, upload.single("sharex"), (req: Request, res: Response) => {
-    res.send(process.env.DOMAIN! + req.file?.filename);
+    res.send((process.env.SSL! ? 'https://' : 'http://') + process.env.DOMAIN! + '/' + req.file?.filename);
 });
 
 app.use(express.static(path.resolve(__dirname, '../uploads')));
