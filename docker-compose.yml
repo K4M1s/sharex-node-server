@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  sharex-server:
+    container_name: sharex-server
+    build: .
+    environment:
+      - PORT=${PORT}
+      - KEY=${KEY}
+      - SSL=${SSL}
+      - DOMAIN=${DOMAIN}
+      - SIZE=${SIZE}
+    labels:
+      - "traefik.http.routers.sharex_server.rule=Host(`test.localhost`)"
+      - "traefik.http.routers.sharex_server.tls=true"
+      - "traefik.http.routers.sharex_server.tls.certresolver=lets-encrypt"
+      - "traefik.port=6969"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

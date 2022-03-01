@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({extended: true, limit: `${maxFileSize}mb`}));
 
 app.post("/upload", AuthorizationMiddleware, upload.single("sharex"), (req: Request, res: Response) => {
     res.send(process.env.DOMAIN! + req.file?.filename);
-})
+});
 
 app.use(express.static(path.resolve(__dirname, '../uploads')));
 
