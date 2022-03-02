@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc --project ./",
-    "start": "node ./dist/index.js",
+    "start": "npm install && npm run build && node ./dist/index.js",
     "watch": "nodemon --watch src --exec \"npm run build && npm run start\" -e ts"
   },
   "keywords": [],

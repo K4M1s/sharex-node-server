@@ -3,7 +3,13 @@ version: '3'
 services:
   sharex-server:
     container_name: ${PROJECT_NAME}
-    build: .
+    build:
+      context: ./docker
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    volumes:
+      - ../app:/usr/src/app
     environment:
       - PORT=${PORT}
       - KEY=${KEY}

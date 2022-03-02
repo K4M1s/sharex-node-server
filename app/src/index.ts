@@ -43,4 +43,8 @@ app.post("/upload", AuthorizationMiddleware, upload.single("sharex"), (req: Requ
 
 app.use(express.static(path.resolve(__dirname, '../uploads')));
 
+app.use('*', (req, res) => {
+    res.status(400).send('File not found.')
+})
+
 app.listen(process.env.PORT);

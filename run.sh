@@ -3,8 +3,8 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Load all variables from .env and export them all for script to read
-if [[ -f "$DIR/.env" ]]; then
-    source "$DIR/.env"
+if [[ -f "$DIR/app/.env" ]]; then
+    source "$DIR/app/.env"
     export USER_ID=$UID
     export GROUP_ID=$UID
 else
@@ -13,5 +13,5 @@ else
     exit
 fi
 
-docker-compose down -v
-docker-compose up -d --build
+docker-compose --env-file app/.env -f build/docker-compose.yml down -v
+docker-compose --env-file app/.env -f build/docker-compose.yml up -d --build

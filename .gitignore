@@ -1,4 +1,4 @@
-/node_modules
-/dist
-/.env
-/uploads
+/app/node_modules
+/app/dist
+/app/.env
+/app/uploads
